@@ -138,12 +138,26 @@ class Processor
 
         $isStarted = false;
 
+        $newParams = array();
+
         foreach ($expectedParams as $key => $message) {
             if (array_key_exists($key, $actualParams)) {
                 continue;
             }
 
-            throw new \Exception('New parameters were added. Please update your parameters file');
+            $newParams[] = $key;
+        }
+
+        if (!empty($newParams)) {
+            throw new \Exception(sprintf(<<<EOT
+
+New parameters were added.
+Please update your parameters file to add the following parameters:
+"%s"
+
+EOT,
+                implode(', ', $newParams)
+            ));
         }
 
         return $actualParams;
