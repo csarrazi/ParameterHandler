@@ -149,15 +149,14 @@ class Processor
         }
 
         if (!empty($newParams)) {
-            throw new \Exception(sprintf(<<<EOT
+            $output = <<<EOT
 
 New parameters were added.
 Please update your parameters file to add the following parameters:
 "%s"
 
-EOT,
-                implode(', ', $newParams)
-            ));
+EOT;
+            throw new \Exception(sprintf($err, implode(', ', $newParams)));
         }
 
         return $actualParams;
