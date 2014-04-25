@@ -156,7 +156,7 @@ Please update your parameters file to add the following parameters:
 "%s"
 
 EOT;
-            throw new \Exception(sprintf($err, implode(', ', $newParams)));
+            throw new \Exception(sprintf($output, implode(', ', $newParams)));
         }
 
         return $actualParams;
